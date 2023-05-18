@@ -7,20 +7,20 @@ password = QjeAr4lwRkKYsiBW
 
 in order to get the database set up in your local environment follow these steps
 
-first make sure you have downloaded python
+*first make sure you have downloaded python*
     in the command line type        python -v
     if it shows a version you are set.
     if it does not show there is a version go to https://www.python.org/downloads/windows/ to download python
 
-second you will download fastapi 
+*second you will download fastapi* 
     in the command line type                                    pip install fastapi
 
-third you will need to install uvicorn
+*third you will need to install uvicorn*
     in the command line type                                    pip install uvicorn
 
-fourth you will need to install mongo db
+*fourth you will need to install mongo db*
     in the command line type                                    python -m pip install pymongo
 
-You are now all set to start up the server locally!
+*You are now all set to start up the server locally!*
     to run the server locally, in the command line type         python -m uvicorn main:app --reload
 
