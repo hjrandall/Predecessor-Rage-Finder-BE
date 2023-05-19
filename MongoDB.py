@@ -27,14 +27,13 @@ class MongoDB:
         list_cursor = list(cursor)
         json = dumps(list_cursor)
         return json
-    def delete(self,id):
-        self.cluster.delete_one({"_id": id})
+    def delete(self,playerName, game):
+        self.cluster.delete_one({"playerName": playerName, "game": game})
         return
-    def update(self,id):
-        self.cluster.update_one({ "_id":id},{"$inc": {"reports": 1}})
+    def update(self,playerName, game):
+        self.cluster.update_one({ "playerName": playerName, "game": game},{"$inc": {"reports": 1}})
         return 
     def count(self,json):
         documents = list(self.cluster.find(json))
         count = len(documents)
-
         return  count
