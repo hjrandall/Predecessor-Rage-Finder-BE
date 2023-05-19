@@ -21,15 +21,20 @@ class MongoDB:
     # The next four methods are the CRUD methods for the mongo db
     def post(self,json):
         self.cluster.insert_one(json)
-        return
+        return 
     def get(self, json):
         cursor = self.cluster.find(json)
         list_cursor = list(cursor)
         json = dumps(list_cursor)
         return json
     def delete(self,id):
-        self.cluster.delete_one()
+        self.cluster.delete_one({"_id": id})
         return
     def update(self,id):
-        self.cluster.update({ "id":id},{"$inc": {"reports": 1}})
-        return
+        self.cluster.update_one({ "_id":id},{"$inc": {"reports": 1}})
+        return 
+    def count(self,json):
+        documents = list(self.cluster.find(json))
+        count = len(documents)
+
+        return  count
