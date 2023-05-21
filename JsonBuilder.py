@@ -1,7 +1,6 @@
 import json
 from pydantic import BaseModel
 
-# this takes the Rager class and turns it into json data
 def BuildPotnetialRagerJson(PotentialRager):
     json = {
         "playerName": PotentialRager.playerName,
@@ -19,6 +18,13 @@ def BuildRagerJson(Rager):
         "game": Rager.game
     }
     return json
+def BuildAppealJson(appeal):
+    json = {
+        "playerName": appeal.playerName,
+        "reason": appeal.reason,
+        "game": appeal.game
+    }
+    return json
 
 class PotentialRager(BaseModel):
     playerName: str
@@ -30,6 +36,11 @@ class PotentialRager(BaseModel):
 class Rager(BaseModel):
     playerName: str
     reports: int
+    game: int
+    
+class Appeal(BaseModel):
+    playerName: str
+    reason: str
     game: int
 
 
