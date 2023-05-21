@@ -4,7 +4,9 @@ import pymongo
 from pymongo import MongoClient
 # bson.json_util is the library we use to make the cursor we recieve back from mongodb into a json object
 from bson.json_util import dumps
+import json as JSON
 class MongoDB:
+
     def __init__(self,dbUrl,db):
         # The dbUrl is the connection string you get from mongo in order to connect to your mongo instance
         # The db is the name of the database in your mongo instance you want to connect to
@@ -26,7 +28,7 @@ class MongoDB:
         cursor = self.cluster.find(json)
         list_cursor = list(cursor)
         json = dumps(list_cursor)
-        return json
+        return JSON.loads(json)
     def delete(self,playerName, game):
         self.cluster.delete_one({"playerName": playerName, "game": game})
         return
