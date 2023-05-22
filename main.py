@@ -77,21 +77,22 @@ async def submitAppeal(appeal_object: JsonBuilder.Appeal):
     db.post(json)
     return {"message": "Your appeal has been submited."}
 
-@app.delete("/deletePotentialRager")
+@app.post("/deletePotentialRager")
 async def deletePotentialRager(rager_object: JsonBuilder.Rager):
+    print("i made it here")
     json = JsonBuilder.BuildRagerJson(rager_object)
     db.set_cluster("PotentialRagers")
     db.delete(json["playerName"], json["game"])
     return {"message": "The potential rager has been deleted."}
 
-@app.delete("/deleteRager")
+@app.post("/deleteRager")
 async def deleteRager(rager_object: JsonBuilder.Rager):
     json = JsonBuilder.BuildRagerJson(rager_object)
     db.set_cluster("Ragers")
     db.delete(json["playerName"], json["game"])
     return{"message": "The rager has been deleted."}
 
-@app.delete("/deleteAppeal")
+@app.post("/deleteAppeal")
 async def deleteRager(appeal_object: JsonBuilder.Appeal):
     json = JsonBuilder.BuildAppealJson(appeal_object)
     db.set_cluster("Appeals")
