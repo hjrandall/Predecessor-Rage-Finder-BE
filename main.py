@@ -2,11 +2,22 @@ from fastapi import FastAPI
 from MongoDB import MongoDB
 import JsonBuilder 
 import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
 
-#creat the fastapi app
-app = FastAPI(title="ChimichangApp")
 #create an instance of the mongodb that we are connecting to
 db = MongoDB("mongodb+srv://Developer:QjeAr4lwRkKYsiBW@ragerslist.kcn47su.mongodb.net/?retryWrites=true&w=majority","RagersUsernames")
+
+#creat the fastapi app
+app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/getRagers")
 async def getRagers(game: int):
