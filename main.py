@@ -86,8 +86,8 @@ async def deletePotentialRager(rager_object: JsonBuilder.Rager):
     return {"message": "The potential rager has been deleted."}
 
 @app.post("/deleteRager")
-async def deleteRager(rager_object: JsonBuilder.Rager):
-    json = JsonBuilder.BuildRagerJson(rager_object)
+async def deleteRager(appeal_object: JsonBuilder.Appeal):
+    json = JsonBuilder.BuildAppealJson(appeal_object)
     db.set_cluster("Ragers")
     db.delete(json["playerName"], json["game"])
     return{"message": "The rager has been deleted."}
