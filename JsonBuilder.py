@@ -21,7 +21,7 @@ def BuildRagerJson(Rager):
 def BuildAppealJson(appeal):
     json = {
         "playerName": appeal.playerName,
-        "reason": appeal.reason,
+        "reasons": appeal.reasons,
         "game": appeal.game
     }
     return json
@@ -40,7 +40,7 @@ class Rager(BaseModel):
     
 class Appeal(BaseModel):
     playerName: str
-    reason: str
+    reasons: str
     game: int
 
 
