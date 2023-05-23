@@ -44,14 +44,14 @@ async def addRager(rager_object: JsonBuilder.Rager):
     db.post(json)
     db.set_cluster("PotentialRagers")
     db.delete(json["playerName"], json["game"])
-    return {"message": "success"}
+    return {"message": "The rager has been added"}
 
 @app.post("/addReport")
 async def addReport(rager_object: JsonBuilder.Rager):
     json = JsonBuilder.BuildRagerJson(rager_object)
     db.set_cluster("Ragers")
     db.update(json["playerName"], json["game"])
-    return {"message": "success"}
+    return {"message": "A report has been added to the f{json.playerName}"}
 
 
 @app.post("/submitRagerReview")
@@ -60,11 +60,11 @@ async def submitRager(Potentialrager_object: JsonBuilder.PotentialRager):
     db.set_cluster("Ragers")
     if db.count({"playerName": json["playerName"], "game": json["game"]}) > 0:
         db.update(json["playerName"], json["game"])
-        return {"message": "this player has already been flaged as a rager. We will add a report to the player"}
+        return {"message": "This player has already been flaged as a rager. We will add a report to the player"}
     db.set_cluster("PotentialRagers")
     if db.count({"playerName": json["playerName"], "game": json["game"]}) > 0:
         db.update(json["playerName"], json["game"])
-        return {"message": "this player has already been reported and is under further review. We will add a report to the player"}
+        return {"message": "This player has already been reported and is under further review. We will add a report to the player"}
     db.post(json)
     return {"message": "Your rager review has been submited"}
 
