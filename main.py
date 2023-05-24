@@ -19,22 +19,25 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/getRagers")
-async def getRagers(game: int):
+@app.post("/getRagers")
+async def getRagers(game: JsonBuilder.getRagers):
+    json =JsonBuilder.BuildgetJson(game)
     db.set_cluster("Ragers")
-    ragers = db.get({"game": game})
+    ragers = db.get(json)
     return ragers 
 
-@app.get("/getpotentialRagers")
-async def getPotentialRagers(game: int):
+@app.post("/getpotentialRagers")
+async def getPotentialRagers(game: JsonBuilder.getRagers):
+    json =JsonBuilder.BuildgetJson(game)
     db.set_cluster("PotentialRagers")
-    ragers = db.get({"game": game})
+    ragers = db.get(json)
     return ragers 
 
-@app.get("/getAppeals")
-async def getAppeals(game: int):
+@app.post("/getAppeals")
+async def getAppeals(game: JsonBuilder.getRagers):
+    json =JsonBuilder.BuildgetJson(game)
     db.set_cluster("Appeals")
-    appeals = db.get({"game": game})
+    appeals = db.get(json)
     return appeals
 
 @app.post("/addRager")
@@ -60,13 +63,13 @@ async def submitRager(Potentialrager_object: JsonBuilder.PotentialRager):
     db.set_cluster("Ragers")
     if db.count({"playerName": json["playerName"], "game": json["game"]}) > 0:
         db.update(json["playerName"], json["game"])
-        return {"message": "This player has already been flaged as a rager. We will add a report to the player"}
+        return {"message": "Your rager report has been submited"}
     db.set_cluster("PotentialRagers")
     if db.count({"playerName": json["playerName"], "game": json["game"]}) > 0:
         db.update(json["playerName"], json["game"])
-        return {"message": "This player has already been reported and is under further review. We will add a report to the player"}
+        return {"message": "Your rager report has been submited"}
     db.post(json)
-    return {"message": "Your rager review has been submited"}
+    return {"message": "Your rager report has been submited"}
 
 @app.post("/submitAppeal")
 async def submitAppeal(appeal_object: JsonBuilder.Appeal):

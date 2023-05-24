@@ -25,22 +25,29 @@ def BuildAppealJson(appeal):
         "game": appeal.game
     }
     return json
+def BuildgetJson(get):
+    json = {
+        "game": get.game
+    }
+    return json
 
 class PotentialRager(BaseModel):
     playerName: str
     recordingID: str
     reasons: str
     reports: int | None
-    game: int
+    game: str
 
 class Rager(BaseModel):
     playerName: str
     reports: int
-    game: int
-    
+    game: str
 class Appeal(BaseModel):
     playerName: str
     reasons: str
-    game: int
+    game: str
+
+class getRagers(BaseModel):
+    game: str
 
 
