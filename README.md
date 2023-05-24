@@ -24,3 +24,6 @@ in order to get the database set up in your local environment follow these steps
 *You are now all set to start up the server locally!*
     to run the server locally, in the command line type         python .\main.py
 
+For running the the be on the server you need to run    setsid python3 main.py then pres ctr d to disconect it from the terminal
+run ps aux to see background programms
+to stop run kill <pid>

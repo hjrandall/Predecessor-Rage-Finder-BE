@@ -82,7 +82,6 @@ async def submitAppeal(appeal_object: JsonBuilder.Appeal):
 
 @app.post("/deletePotentialRager")
 async def deletePotentialRager(rager_object: JsonBuilder.Rager):
-    print("i made it here")
     json = JsonBuilder.BuildRagerJson(rager_object)
     db.set_cluster("PotentialRagers")
     db.delete(json["playerName"], json["game"])
