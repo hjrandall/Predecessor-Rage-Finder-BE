@@ -35,7 +35,7 @@ class PotentialRager(BaseModel):
     playerName: str
     recordingID: str
     reasons: str
-    reports: int | None
+    reports: int
     game: str
 
 class Rager(BaseModel):
