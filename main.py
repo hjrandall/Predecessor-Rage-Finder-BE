@@ -8,7 +8,10 @@ from fastapi.middleware.cors import CORSMiddleware
 db = MongoDB("mongodb+srv://Developer:QjeAr4lwRkKYsiBW@ragerslist.kcn47su.mongodb.net/?retryWrites=true&w=majority","RagersUsernames")
 
 #creat the fastapi app
-app = FastAPI()
+app = FastAPI(
+    docs_url=None, # Disable docs (Swagger UI)
+    redoc_url=None, # Disable redoc
+)
 
 origins = ["*"]
 
