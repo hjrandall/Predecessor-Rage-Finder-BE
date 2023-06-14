@@ -22,4 +22,4 @@ in order to get the database set up in your local environment follow these steps
     in the command line type                                    python -m pip install pymongo
 
 *You are now all set to start up the server locally!*
-    to run the server locally, in the command line type         python .\main.py
+    to run the server locally, in the command line type        python -m uvicorn main:app --reload
